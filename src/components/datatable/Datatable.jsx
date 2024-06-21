@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-const Datatable = ({columns}) => {
+const Datatable = ({columns=[]}) => {
   const location = useLocation();
   const type = location.pathname.split('/')[1];
 
