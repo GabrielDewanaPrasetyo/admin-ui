@@ -4,8 +4,13 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import { DarkModeContext } from "../../context/darkModeContext";
+import LightModeOutlidnedIcon from "@mui/icons-material/LightModeOutlined";
 
 const Login = () => { 
+  const test = useContext(DarkModeContext);
+  console.log(test)
   console.log(process.env.REACT_APP_FIREBASE_KEY);
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
@@ -32,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div data-testid="form" className="login">
+    <div data-testid="form" className={darkMode ? "app dark" : "login"}>
       <form onSubmit={handleLogin}>
         <input
           id="email"
@@ -48,6 +53,12 @@ const Login = () => {
         />
         <button type="submit" data-testid="submit">Login</button>
         {error && <span>Wrong email or password!</span>}
+        <div className="items">
+          <div className="item">
+            <DarkModeOutlinedIcon className="icon" 
+            onClick={() => dispatch({ type: "TOGGLE"})}/>
+          </div>
+        </div>
       </form>
     </div>
   );
