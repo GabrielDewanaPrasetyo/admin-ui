@@ -1,19 +1,20 @@
 import "./widget.scss";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
+// eslint-disable-next-line react/prop-types
 const Widget = ({ type }) => {
   let data;
 
-  const [amount, setAmount] = useState (null);
-  const [diff, setDiff] = useState(null);
+  //temporary
+  const [amount, setAmount] = useState(null)
+  const [diff, setDiff] = useState(null)
 
   switch (type) {
     case "user":
@@ -35,10 +36,10 @@ const Widget = ({ type }) => {
       break;
     case "order":
       data = {
-        title: "ORDERS",
+        title: "Products",
         isMoney: false,
-        link: "View all orders",
-        query:"users",
+        link: "View all products",
+        query:"products",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -52,10 +53,10 @@ const Widget = ({ type }) => {
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
-        link: "View net earnings",
-        query:"users",
+        title: "Categories",
+        isMoney: false,
+        link: "View all categories",
+        query:"categories",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -64,26 +65,10 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "balance":
-      data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
-        query:"users",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
-          />
-        ),
-      };
-      break;
     default:
       break;
   }
+
   useEffect(() => {
     const fetchData = async () => {
       const today = new Date();
@@ -127,12 +112,12 @@ const Widget = ({ type }) => {
         <div className="link">{data.link}</div>
       </div>
       <div className="right">
-      <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
-        {diff < 0 ? <KeyboardArrowDownIcon/> : <KeyboardArrowUpIcon/> }
-        {diff} %
-      </div>
-        {data.icon}
-      </div>
+  <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
+    {diff < 0 ? <KeyboardArrowDownIcon/> : <KeyboardArrowUpIcon/> }
+    {diff} %
+  </div>
+  {data.icon}
+</div>
     </div>
   );
 };

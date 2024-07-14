@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// eslint-disable-next-line react/prop-types
 const Chart = ({ type, aspect }) => {
   let listData;
 
@@ -24,7 +25,7 @@ const Chart = ({ type, aspect }) => {
           { name: "March", Total: 85 },
           { name: "April", Total: 66 },
           { name: "May", Total: 97 },
-          { name: "June", Total: 118 },
+          { name: "June", Total: 117 },
         ],
       };
       break;
