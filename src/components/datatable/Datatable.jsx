@@ -19,12 +19,11 @@ const Datatable = ({columns}) => {
           <div className="cellAction">
             <Link to={"/" + type + "/" + params.row.id} style={{ textDecoration: "none" }}>
               <span className="viewButton">View</span>
-            </Link>
+            </Link> 
             <span>
               <span
                 className="deleteButton"
-                onClick={() => handleDelete(params.row.id)}
-              >
+                onClick={() => handleDelete(params.row.id)}>
                 Delete
               </span>
             </span>

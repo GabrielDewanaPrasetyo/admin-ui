@@ -35,7 +35,7 @@ describe('template spec', () => {
             cy.get('a.link').click()
 
             cy.get('div.Input')
-            .type('Coffee')
+            .type('Dessert')
 
             cy.get('[data-testid="jalan"]').click()
     
